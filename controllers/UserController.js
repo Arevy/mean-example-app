@@ -6,3 +6,5 @@ const UserService = require('../services/UserService');
 router.get('/', function(req, res) {
     res.json({ message: 'User API Works' });
 });
+
+module.exports = router;

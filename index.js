@@ -2,18 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const http = require('http');
-const config = require('./config');
-const routes = require('./routes');
+const config = require('./config.json');
+const UserController = require('./controllers/UserController');
 const mongoose = require('mongoose');
 const app = express();
 
 let dbConnString = 'mongodb://' + config.dbHost + ':' + config.dbPort + '/' + config.dbName;
 
-mongoose.connect()
+mongoose.connect(dbConnString,  { useNewUrlParser: true })
         .then(() => console.log('connected to db'))
         .catch((err) => console.log('could not connect to db', err));
 //Set Port
-const port = process.env.PORT || config.port;
+const port = process.env.PORT || config.appPort;
 app.set('port', port);
 
 // app.use(function(req, res, next) {
@@ -38,7 +38,7 @@ app.get('/webapp', (req, res) => {
 });
 
 // set routes handler
-app.use('/api', routes);
+app.use('/api/users', UserController);
 
 const server = http.createServer(app);
 server.listen(port, () => console.log(`Running on localhost:${port}`));

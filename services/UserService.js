@@ -10,4 +10,6 @@ function findUserById(userId) {
     });
 }
 
-export {findUserById};
+module.exports = {
+    findUserById
+};

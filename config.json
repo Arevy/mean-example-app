@@ -1,0 +1,6 @@
+{
+    "dbName" : "myMessage",
+    "dbHost" : "localhost",
+    "dbPort" : "27017",
+    "appPort": "3000"
+}
